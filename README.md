@@ -73,6 +73,7 @@
 ```bash
 git clone https://github.com/Kolyadual/messthon.git
 cd messthon
+```
 
 ### Run
 
@@ -81,4 +82,5 @@ cd messthon
     ./run.sh server # It starts server
 
     ./run.sh client # It starts main messenger
+
 
