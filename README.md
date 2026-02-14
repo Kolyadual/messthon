@@ -7,9 +7,9 @@
 <br>
 
 <div align="center">
-  <h1>🚀 MESSTHON</h1>
+  <h1>MESSTHON</h1>
   <h3>Secure. Private. Beautiful.</h3>
-  <p><i>Next-generation encrypted messenger for the privacy-conscious</i></p>
+  <p><i>Next-generation encrypted Python messenger</i></p>
 </div>
 
 <br>
@@ -82,5 +82,6 @@ cd messthon
     ./run.sh server # It starts server
 
     ./run.sh client # It starts main messenger
+
 
 
