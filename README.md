@@ -2,7 +2,6 @@
   <img src="https://img.shields.io/badge/version-1.0.0--beta-blue?style=for-the-badge" alt="Version">
   <img src="https://img.shields.io/badge/python-3.7+-brightgreen?style=for-the-badge" alt="Python">
   <img src="https://img.shields.io/badge/Qt-6.5-success?style=for-the-badge" alt="Qt6">
-  <img src="https://img.shields.io/badge/license-MIT-orange?style=for-the-badge" alt="License">
 </div>
 
 <br>
@@ -82,3 +81,4 @@ cd messthon
     ./run.sh server # It starts server
 
     ./run.sh client # It starts main messenger
+
