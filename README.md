@@ -50,20 +50,8 @@
 
 ---
 
-## 🖼️ Скриншоты
+<img width="542" height="359" alt="Снимок экрана_20260321_001852" src="https://github.com/user-attachments/assets/111853cf-1df1-4f45-82e3-38f62ec69733" />
 
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="https://via.placeholder.com/400x600/2b2b2b/00ff88?text=Login+Screen" width="300"></td>
-      <td><img src="https://via.placeholder.com/800x600/1e1e1e/00ff88?text=Chat+Window" width="600"></td>
-    </tr>
-    <tr>
-      <td align="center"><b>✨ Окно входа</b></td>
-      <td align="center"><b>💬 Окно чата</b></td>
-    </tr>
-  </table>
-</div>
 
 ---
 
