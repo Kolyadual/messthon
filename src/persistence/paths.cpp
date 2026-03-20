@@ -1,22 +1,3 @@
-/*
-    Copyright © 2019 by The qTox Project Contributors
-
-    This file is part of qTox, a Qt-based graphical interface for Tox.
-
-    qTox is libre software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    qTox is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with qTox.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include "paths.h"
 
 #include <QApplication>
@@ -32,7 +13,7 @@
 #include <cassert>
 
 namespace {
-const QLatin1String globalSettingsFile{"qtox.ini"};
+const QLatin1String globalSettingsFile{"mst.ini"};
 
 #if PATHS_VERSION_TCS_COMPLIANT
 const QLatin1String profileFolder{"profiles"};
@@ -43,21 +24,21 @@ const QLatin1String screenshotsFolder{"screenshots"};
 
 // NOTE(sudden6): currently unused, but reflects the TCS at 2018-11
 #ifdef Q_OS_WIN
-const QLatin1String TCSToxFileFolder{"%APPDATA%/tox/"};
+const QLatin1String TCSToxFileFolder{"%APPDATA%/mst/"};
 #elif defined(Q_OS_OSX)
-const QLatin1String TCSToxFileFolder{"~/Library/Application Support/Tox"};
+const QLatin1String TCSToxFileFolder{"~/Library/Application Support/Mst"};
 #else
-const QLatin1String TCSToxFileFolder{"~/.config/tox/"};
+const QLatin1String TCSToxFileFolder{"~/.config/mst/"};
 #endif
 #endif // PATHS_VERSION_TCS_COMPLIANT
 } // namespace
 
 /**
  * @class Profile
- * @brief Handles all qTox internal paths
+ * @brief Handles all Messthon internal paths
  *
- * The qTox internal file layout starts at `<BASE_PATH>`. This directory is platform
- * specific and depends on if qTox runs in portable mode.
+ * The Messthon internal file layout starts at `<BASE_PATH>`. This directory is platform
+ * specific and depends on if Messthon runs in portable mode.
  *
  * Example file layout for non-portable mode:
  * @code
@@ -69,14 +50,14 @@ const QLatin1String TCSToxFileFolder{"~/.config/tox/"};
  *
  * Example file layout for portable mode:
  * @code
- *  /qTox.bin
+ *  /Messthon.bin
  *  /themes/
  *  /profiles/
  *  /profiles/avatars/
- *  /qtox.ini
+ *  /mst.ini
  * @endcode
  *
- * All qTox or Tox specific directories should be looked up through this module.
+ * All Messthon or Tox specific directories should be looked up through this module.
  */
 
 namespace {
@@ -146,7 +127,7 @@ bool Paths::setPortable(bool newPortable)
 }
 
 /**
- * @brief Check if qTox is running in portable mode.
+ * @brief Check if Messthon is running in portable mode.
  * @return True if running in portable mode, false else.
  */
 bool Paths::isPortable() const
@@ -156,7 +137,7 @@ bool Paths::isPortable() const
 
 #if PATHS_VERSION_TCS_COMPLIANT
 /**
- * @brief Returns the path to the global settings file "qtox.ini"
+ * @brief Returns the path to the global settings file "mst.ini"
  * @return The path to the folder.
  */
 QString Paths::getGlobalSettingsPath() const
@@ -207,18 +188,18 @@ QString Paths::getToxSaveDir() const
     // breaks when %APPDATA% is changed
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)
                            + QDir::separator() + "AppData" + QDir::separator() + "Roaming"
-                           + QDir::separator() + "tox")
+                           + QDir::separator() + "mst")
            + QDir::separator();
 #elif defined(Q_OS_OSX)
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)
                            + QDir::separator() + "Library" + QDir::separator()
-                           + "Application Support" + QDir::separator() + "Tox")
+                           + "Application Support" + QDir::separator() + "Mst")
            + QDir::separator();
 #else
     // TODO(sudden6): This does not respect the XDG_* environment variables and also
     // stores user data in a config location
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
-                           + QDir::separator() + "tox")
+                           + QDir::separator() + "mst")
            + QDir::separator();
 #endif
 }
@@ -273,7 +254,7 @@ QStringList Paths::getThemeDirs() const
                                                QStandardPaths::LocateDirectory);
     }
 
-    // look for themes beside the qTox binary with lowest priority
+    // look for themes beside the Messthon binary with lowest priority
     const QString curPath = qApp->applicationDirPath();
     themeFolders += curPath % QDir::separator() % themeFolder % QDir::separator();
 
@@ -295,16 +276,16 @@ QString Paths::getSettingsDirPath() const
 #ifdef Q_OS_WIN
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)
                            + QDir::separator() + "AppData" + QDir::separator() + "Roaming"
-                           + QDir::separator() + "tox")
+                           + QDir::separator() + "mst")
            + QDir::separator();
 #elif defined(Q_OS_OSX)
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)
                            + QDir::separator() + "Library" + QDir::separator()
-                           + "Application Support" + QDir::separator() + "Tox")
+                           + "Application Support" + QDir::separator() + "Mst")
            + QDir::separator();
 #else
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
-                           + QDir::separator() + "tox")
+                           + QDir::separator() + "mst")
            + QDir::separator();
 #endif
 }
@@ -323,12 +304,12 @@ QString Paths::getAppDataDirPath() const
 #ifdef Q_OS_WIN
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)
                            + QDir::separator() + "AppData" + QDir::separator() + "Roaming"
-                           + QDir::separator() + "tox")
+                           + QDir::separator() + "mst")
            + QDir::separator();
 #elif defined(Q_OS_OSX)
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)
                            + QDir::separator() + "Library" + QDir::separator()
-                           + "Application Support" + QDir::separator() + "Tox")
+                           + "Application Support" + QDir::separator() + "Mst")
            + QDir::separator();
 #else
     /*
@@ -355,12 +336,12 @@ QString Paths::getAppCacheDirPath() const
 #ifdef Q_OS_WIN
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)
                            + QDir::separator() + "AppData" + QDir::separator() + "Roaming"
-                           + QDir::separator() + "tox")
+                           + QDir::separator() + "mst")
            + QDir::separator();
 #elif defined(Q_OS_OSX)
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::HomeLocation)
                            + QDir::separator() + "Library" + QDir::separator()
-                           + "Application Support" + QDir::separator() + "Tox")
+                           + "Application Support" + QDir::separator() + "Mst")
            + QDir::separator();
 #else
     return QDir::cleanPath(QStandardPaths::writableLocation(QStandardPaths::CacheLocation))

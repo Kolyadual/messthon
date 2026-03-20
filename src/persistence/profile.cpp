@@ -1,22 +1,3 @@
-/*
-    Copyright © 2015-2019 by The qTox Project Contributors
-
-    This file is part of qTox, a Qt-based graphical interface for Tox.
-
-    qTox is libre software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    qTox is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with qTox.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include <QBuffer>
 #include <QDebug>
 #include <QDir>
@@ -278,7 +259,7 @@ void Profile::initCore(const QByteArray& toxsave, Settings& s, bool isNewProfile
     coreAv->start();
 
     if (isNewProfile) {
-        core->setStatusMessage(tr("Toxing on qTox"));
+        core->setStatusMessage(tr("I am cool!"));
         core->setUsername(name);
         onSaveToxSave();
     }
@@ -329,7 +310,7 @@ Profile* Profile::loadProfile(const QString& name, const QString& password, Sett
 
     LoadToxDataError error;
     QByteArray toxsave = QByteArray();
-    QString path = paths.getSettingsDirPath() + name + ".tox";
+    QString path = paths.getSettingsDirPath() + name + ".mst";
     std::unique_ptr<ToxEncrypt> tmpKey = loadToxData(password, path, toxsave, error);
     if (logLoadToxDataError(error, path)) {
         ProfileLocker::unlock();
@@ -362,7 +343,7 @@ Profile* Profile::createProfile(const QString& name, const QString& password, Se
 {
     CreateToxDataError error;
     Paths& paths = settings.getPaths();
-    QString path = paths.getSettingsDirPath() + name + ".tox";
+    QString path = paths.getSettingsDirPath() + name + ".mst";
     std::unique_ptr<ToxEncrypt> tmpKey = createToxData(name, password, path, error, paths);
 
     if (logCreateToxDataError(error, name)) {
@@ -421,7 +402,7 @@ QStringList Profile::getFilesByExt(QString extension, Settings& settings)
 const QStringList Profile::getAllProfileNames(Settings& settings)
 {
     profiles.clear();
-    QStringList toxfiles = getFilesByExt("tox", settings), inifiles = getFilesByExt("ini", settings);
+    QStringList toxfiles = getFilesByExt("mst", settings), inifiles = getFilesByExt("ini", settings);
     for (const QString& toxfile : toxfiles) {
         if (!inifiles.contains(toxfile)) {
             settings.createPersonal(toxfile);
@@ -497,11 +478,11 @@ bool Profile::saveToxSave(QByteArray data)
     ProfileLocker::assertLock(paths);
     assert(ProfileLocker::getCurLockName() == name);
 
-    QString path = paths.getSettingsDirPath() + name + ".tox";
+    QString path = paths.getSettingsDirPath() + name + ".mst";
     qDebug() << "Saving tox save to " << path;
     QSaveFile saveFile(path);
     if (!saveFile.open(QIODevice::WriteOnly)) {
-        qCritical() << "Tox save file " << path << " couldn't be opened";
+        qCritical() << "MST save file " << path << " couldn't be opened";
         return false;
     }
 
@@ -633,7 +614,7 @@ void Profile::loadDatabase(QString password, IMessageBoxManager& messageBoxManag
     if (salt.size() != TOX_PASS_SALT_LENGTH) {
         qWarning() << "Couldn't compute salt from public key" << name;
         messageBoxManager.showError(QObject::tr("Error"),
-                       QObject::tr("qTox couldn't open your chat logs, they will be disabled."));
+                       QObject::tr("Messthon couldn't open your chat logs, they will be disabled."));
     }
     // At this point it's too early to load the personal settings (Nexus will do it), so we always
     // load
@@ -645,7 +626,7 @@ void Profile::loadDatabase(QString password, IMessageBoxManager& messageBoxManag
     } else {
         qWarning() << "Failed to open database for profile" << name;
         messageBoxManager.showError(QObject::tr("Error"),
-                       QObject::tr("qTox couldn't open your chat logs, they will be disabled."));
+                       QObject::tr("Messthon couldn't open your chat logs, they will be disabled."));
     }
 }
 
@@ -739,7 +720,7 @@ void Profile::saveAvatar(const ToxPk& owner, const QByteArray& avatar)
     } else {
         QSaveFile file(path);
         if (!file.open(QIODevice::WriteOnly)) {
-            qWarning() << "Tox avatar " << path << " couldn't be saved";
+            qWarning() << "MST avatar " << path << " couldn't be saved";
             return;
         }
         file.write(pic);
@@ -812,7 +793,7 @@ void Profile::removeAvatar(const ToxPk& owner)
 bool Profile::exists(QString name, Paths& paths)
 {
     QString path = paths.getSettingsDirPath() + name;
-    return QFile::exists(path + ".tox");
+    return QFile::exists(path + ".mst");
 }
 
 /**
@@ -833,7 +814,7 @@ bool Profile::isEncrypted() const
 bool Profile::isEncrypted(QString name, Paths& paths)
 {
     uint8_t data[TOX_PASS_ENCRYPTION_EXTRA_LENGTH] = {0};
-    QString path = paths.getSettingsDirPath() + name + ".tox";
+    QString path = paths.getSettingsDirPath() + name + ".mst";
     QFile saveFile(path);
     if (!saveFile.open(QIODevice::ReadOnly)) {
         qWarning() << "Couldn't open tox save " << path;
@@ -870,7 +851,7 @@ QStringList Profile::remove()
     QString path = paths.getSettingsDirPath() + name;
     ProfileLocker::unlock();
 
-    QFile profileMain{path + ".tox"};
+    QFile profileMain{path + ".mst"};
     QFile profileConfig{path + ".ini"};
 
     QStringList ret;
@@ -910,7 +891,7 @@ bool Profile::rename(QString newName)
         return false;
     }
 
-    QFile::rename(path + ".tox", newPath + ".tox");
+    QFile::rename(path + ".mst", newPath + ".mst");
     QFile::rename(path + ".ini", newPath + ".ini");
     if (database) {
         database->rename(newName);

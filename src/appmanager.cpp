@@ -1,22 +1,3 @@
-/*
-    Copyright © 2022 by The qTox Project Contributors
-
-    This file is part of qTox, a Qt-based graphical interface for Tox.
-
-    qTox is libre software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    qTox is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with qTox.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include "appmanager.h"
 
 #include "src/widget/tool/messageboxmanager.h"
@@ -189,9 +170,9 @@ int AppManager::run()
     PosixSignalNotifier::watchCommonTerminatingSignals();
 #endif
 
-    qapp->setApplicationName("qTox");
+    qapp->setApplicationName("Messthon");
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
-    qapp->setDesktopFileName("io.github.qtox.qTox");
+    qapp->setDesktopFileName("io.github.kolyadual.Messthon");
 #endif
     qapp->setApplicationVersion("\nGit commit: " + QString(GIT_VERSION));
 
@@ -210,7 +191,7 @@ int AppManager::run()
 
     // Process arguments
     QCommandLineParser parser;
-    parser.setApplicationDescription("qTox, version: " + QString(GIT_VERSION));
+    parser.setApplicationDescription("Messthon, version: " + QString(GIT_VERSION));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addPositionalArgument("uri", tr("Tox URI to parse"));
@@ -253,7 +234,7 @@ int AppManager::run()
     QString logFileDir = settings->getPaths().getAppCacheDirPath();
     QDir(logFileDir).mkpath(".");
 
-    QString logfile = logFileDir + "qtox.log";
+    QString logfile = logFileDir + "messthon.log";
     FILE* mainLogFilePtr = fopen(logfile.toLocal8Bit().constData(), "a");
 
     // Trim log file if over 1MB
@@ -267,12 +248,12 @@ int AppManager::run()
         QDir dir(logFileDir);
 
         // Check if log.1 already exists, and if so, delete it
-        if (dir.remove(logFileDir + "qtox.log.1"))
+        if (dir.remove(logFileDir + "messthon.log.1"))
             qDebug() << "Removed old log successfully";
         else
             qWarning() << "Unable to remove old log file";
 
-        if (!dir.rename(logFileDir + "qtox.log", logFileDir + "qtox.log.1"))
+        if (!dir.rename(logFileDir + "messthon.log", logFileDir + "messthon.log.1"))
             qCritical() << "Unable to move logs";
 
         // open a new logfile
@@ -304,7 +285,7 @@ int AppManager::run()
     if (parser.isSet("p")) {
         profileName = parser.value("p");
         if (!Profile::exists(profileName, settings->getPaths())) {
-            qWarning() << "-p profile" << profileName + ".tox"
+            qWarning() << "-p profile" << profileName + ".mst"
                        << "doesn't exist, opening login screen";
             doIpc = false;
             autoLogin = false;
@@ -328,7 +309,7 @@ int AppManager::run()
         // Otherwise we start a new qTox instance and process it ourselves
         if (firstParam.startsWith("tox:")) {
             eventType = "uri";
-        } else if (firstParam.endsWith(".tox")) {
+        } else if (firstParam.endsWith(".mst")) {
             eventType = ToxSave::eventHandlerKey;
         } else {
             qCritical() << "Invalid argument";
@@ -342,8 +323,8 @@ int AppManager::run()
         if (ipc->waitUntilAccepted(event, 2)) {
             if (eventType == "activate") {
                 qDebug()
-                    << "Another qTox instance is already running. If you want to start a second "
-                       "instance, please open login screen (qtox -l) or start with a profile (qtox "
+                    << "Another Messthon instance is already running. If you want to start a second "
+                       "instance, please open login screen (messthon -l) or start with a profile (messthon "
                        "-p <profile name>).";
             } else {
                 qDebug() << "Event" << eventType << "was handled by other client.";

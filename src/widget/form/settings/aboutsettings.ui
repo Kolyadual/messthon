@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string notr="true">Form</string>
+   <string>About Messthon</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -34,20 +34,15 @@
         <height>599</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1,0,0">
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,1,0">
+       <!-- Группа Version -->
        <item>
-        <widget class="QGroupBox" name="versioGroup">
+        <widget class="QGroupBox" name="versionGroup">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
          </property>
          <property name="title">
           <string>Version</string>
@@ -66,14 +61,8 @@
               <family>Sans Serif</family>
              </font>
             </property>
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
-            </property>
             <property name="text">
              <string notr="true">{GIT_DESCRIBE}</string>
-            </property>
-            <property name="indent">
-             <number>-1</number>
             </property>
             <property name="openExternalLinks">
              <bool>true</bool>
@@ -91,7 +80,7 @@
              </font>
             </property>
             <property name="text">
-             <string notr="true">{QTVERSION}</string>
+             <string notr="true">Qt: {QTVERSION}</string>
             </property>
             <property name="textInteractionFlags">
              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -111,11 +100,8 @@
               <family>Sans Serif</family>
              </font>
             </property>
-            <property name="mouseTracking">
-             <bool>true</bool>
-            </property>
             <property name="text">
-             <string notr="true">{TOXCOREVERSION}</string>
+             <string notr="true">Toxcore: {TOXCOREVERSION}</string>
             </property>
             <property name="textInteractionFlags">
              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -135,11 +121,8 @@
               <family>Sans Serif</family>
              </font>
             </property>
-            <property name="mouseTracking">
-             <bool>true</bool>
-            </property>
             <property name="text">
-             <string notr="true">{GIT_VERSION}</string>
+             <string notr="true">Commit: {GIT_VERSION}</string>
             </property>
             <property name="openExternalLinks">
              <bool>true</bool>
@@ -151,12 +134,6 @@
           </item>
           <item row="1" column="0" colspan="2">
            <widget class="QStackedWidget" name="updateStack">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="currentIndex">
              <number>1</number>
             </property>
@@ -171,9 +148,6 @@
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
-                  </property>
-                  <property name="accessibleDescription">
-                   <string>Open update download link</string>
                   </property>
                   <property name="text">
                    <string>Update available</string>
@@ -196,14 +170,11 @@
                     <verstretch>0</verstretch>
                    </sizepolicy>
                   </property>
-                  <property name="autoFillBackground">
-                   <bool>false</bool>
-                  </property>
                   <property name="frameShape">
                    <enum>QFrame::StyledPanel</enum>
                   </property>
                   <property name="text">
-                   <string>qTox is up to date ✓</string>
+                   <string>Messthon is up to date ✓</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -235,14 +206,8 @@
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="unstableVersion">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
-            </property>
             <property name="text">
-             <string>Currently running an untested/unstable version of qTox</string>
+             <string>Currently running an untested/unstable version of Messthon</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -252,8 +217,10 @@
          </layout>
         </widget>
        </item>
+       
+       <!-- Группа License & Acknowledgments (объединена) -->
        <item>
-        <widget class="QGroupBox" name="licenseGroup">
+        <widget class="QGroupBox" name="licenseAcknowledgmentsGroup">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -261,11 +228,11 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>License</string>
+          <string>License &amp; Acknowledgments</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QTextBrowser" name="license">
+           <widget class="QTextBrowser" name="licenseAcknowledgmentsText">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -275,7 +242,7 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>0</height>
+              <height>200</height>
              </size>
             </property>
             <property name="font">
@@ -286,30 +253,33 @@
             <property name="focusPolicy">
              <enum>Qt::NoFocus</enum>
             </property>
-            <property name="contextMenuPolicy">
-             <enum>Qt::NoContextMenu</enum>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::LeftToRight</enum>
-            </property>
             <property name="html">
-             <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+             <string notr="true">
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif';&quot;&gt;Copyright © 2014-2020 by The qTox Project Contributors&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu';&quot;&gt;qTox is a Qt-based graphical interface for Tox.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif';&quot;&gt;qTox is libre software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Sans Serif';&quot;&gt;qTox is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu';&quot;&gt;You should have received a copy of the GNU General Public License along with this program. If not, see &lt;/span&gt;&lt;a href=&quot;https://www.gnu.org/copyleft/gpl.html&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; text-decoration: underline; color:#007af4;&quot;&gt;https://www.gnu.org/copyleft/gpl.html&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Ubuntu';&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="searchPaths">
-             <stringlist/>
+
+&lt;h3&gt;License&lt;/h3&gt;
+&lt;p&gt;Copyright © 2026 Kolyadual &amp; The Messthon Contributors&lt;/p&gt;
+&lt;p&gt;Messthon is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.&lt;/p&gt;
+&lt;p&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.&lt;/p&gt;
+&lt;p&gt;You should have received a copy of the GNU General Public License along with this program. If not, see &lt;a href=&quot;https://www.gnu.org/licenses/&quot;&gt;https://www.gnu.org/licenses/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Acknowledgments&lt;/h3&gt;
+&lt;p&gt;Messthon would not be possible without these amazing projects and people:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Tox Project&lt;/b&gt; – for the peer-to-peer network library (https://tox.chat)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;py-toxcore-c&lt;/b&gt; – Python bindings to Tox (https://github.com/TokTok/py-toxcore-c)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Qt Project&lt;/b&gt; – for the GUI framework (https://qt.io)&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;All contributors and testers&lt;/b&gt; – who helped shape Messthon&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Special thanks to the open source community for making privacy-respecting communication possible.&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+             </string>
             </property>
             <property name="openExternalLinks">
-             <bool>true</bool>
-            </property>
-            <property name="openLinks">
              <bool>true</bool>
             </property>
            </widget>
@@ -317,6 +287,8 @@ p, li { white-space: pre-wrap; }
          </layout>
         </widget>
        </item>
+       
+       <!-- Группа Authors (краткая информация об авторах) -->
        <item>
         <widget class="QGroupBox" name="authorGroup">
          <property name="sizePolicy">
@@ -324,12 +296,6 @@ p, li { white-space: pre-wrap; }
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
          </property>
          <property name="title">
           <string>Authors</string>
@@ -349,7 +315,8 @@ p, li { white-space: pre-wrap; }
              </font>
             </property>
             <property name="text">
-             <string notr="true">{AUTHOR INFO}</string>
+             <string notr="true">Kolyadual &lt;https://github.com/Kolyadual&gt; – Lead Developer&lt;br&gt;
+Contributors: See Git history for full list.</string>
             </property>
             <property name="openExternalLinks">
              <bool>true</bool>
@@ -362,70 +329,7 @@ p, li { white-space: pre-wrap; }
          </layout>
         </widget>
        </item>
-       <item>
-        <widget class="QGroupBox" name="knowIssuesGroup">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="title">
-          <string>Known Issues</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_8">
-          <item>
-           <widget class="QLabel" name="knownIssues">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <family>Sans Serif</family>
-             </font>
-            </property>
-            <property name="text">
-             <string notr="true">{KNOWN ISSUES TEXT}</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-            <property name="openExternalLinks">
-             <bool>true</bool>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="clickToReport">
-            <property name="text">
-             <string notr="true">{CLICK TO REPORT TEXT}</string>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-            <property name="openExternalLinks">
-             <bool>true</bool>
-            </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
+       
       </layout>
      </widget>
     </widget>

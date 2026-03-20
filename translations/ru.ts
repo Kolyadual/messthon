@@ -143,8 +143,8 @@ which may lead to problems with video calls.</source>
         <translation>Исходный автор: %1</translation>
     </message>
     <message>
-        <source>You are using qTox version %1.</source>
-        <translation>Вы используете qTox версии %1.</translation>
+        <source>You are using Messthon version %1.</source>
+        <translation>Вы используете Messthon версии %1.</translation>
     </message>
     <message>
         <source>Commit hash: %1</source>
@@ -159,10 +159,10 @@ which may lead to problems with video calls.</source>
         <translation>Версия Qt: %1</translation>
     </message>
     <message>
-        <source>A list of all known issues may be found at our %1 at Github. If you discover a bug or security vulnerability within qTox, please report it according to the guidelines in our %2 wiki article.</source>
+        <source>A list of known issues can be found in the %1 section on Github. Please report any discovered bugs or security vulnerabilities to Messthon according to the guidelines in the %2 wiki article.</source>
         <comment>`%1` is replaced by translation of `bug tracker`
 `%2` is replaced by translation of `Writing Useful Bug Reports`</comment>
-        <translation>Список всех известных проблем вы можете найти на нашем %1 на Github. Если вы обнаружите ошибку или уязвимость в безопасности qTox, пожалуйста сообщите о них согласно указаниям в нашей статье %2 вики.</translation>
+        <translation>Список известных проблем можно найти в разделе %1 на Github. Пожалуйста, сообщайте о любых обнаруженных ошибках или уязвимостях безопасности в Messthon в соответствии с рекомендациями, изложенными в статье вики %2.</translation>
     </message>
     <message>
         <source>Click here to report a bug.</source>
@@ -324,12 +324,12 @@ which may lead to problems with video calls.</source>
         <translation>Доступно обновление</translation>
     </message>
     <message>
-        <source>qTox is up to date ✓</source>
-        <translation>qTox обновлен ✓</translation>
+        <source>Messthon is up to date ✓</source>
+        <translation>Messthon обновлен ✓</translation>
     </message>
     <message>
-        <source>Currently running an untested/unstable version of qTox</source>
-        <translation>Сейчас запущена не протестированная/нестабильная версия qTox</translation>
+        <source>Currently running an untested/unstable version of Messthon</source>
+        <translation>Сейчас запущена не протестированная/нестабильная версия Messthon</translation>
     </message>
 </context>
 <context>
@@ -499,12 +499,12 @@ which may lead to problems with video calls.</source>
         <translation>журнал (*.log)</translation>
     </message>
     <message>
-        <source>Unless you %1 know what you are doing, please do %2 change anything here. Changes made here may lead to problems with qTox, and even to loss of your data, e.g. history.%3</source>
-        <translation>Если вы %1 что знаете, что вы делаете, пожалуйста, %2 меняйте здесь что-либо. Изменения сделанные здесь могут привести к проблемам с qTox, и даже к потере ваших данных, например, истории чатов.%3</translation>
+        <source>Unless you %1 know what you are doing, please do %2 change anything here. Changes made here may lead to problems with Messthon, and even to loss of your data, e.g. history.%3</source>
+        <translation>Если вы %1 что знаете, что вы делаете, пожалуйста, %2 меняйте здесь что-либо. Изменения сделанные здесь могут привести к проблемам с Messthon, и даже к потере ваших данных, например, истории чатов.%3</translation>
     </message>
     <message>
-        <source>Changes here are applied only after restarting qTox.</source>
-        <translation>Изменения здесь применяются только после перезапуска qTox.</translation>
+        <source>Changes here are applied only after restarting Messthon.</source>
+        <translation>Изменения здесь применяются только после перезапуска Messthon.</translation>
     </message>
     <message>
         <source>Save file</source>
@@ -650,9 +650,9 @@ which may lead to problems with video calls.</source>
         <translation>Отправить файл</translation>
     </message>
     <message>
-        <source>qTox wasn&apos;t able to open %1</source>
+        <source>Messthon wasn&apos;t able to open %1</source>
         <translatorcomment>Паравозик не смог. Не сможешь и ты!</translatorcomment>
-        <translation>qTox не смог открыть %1</translation>
+        <translation>Messthon не смог открыть %1</translation>
     </message>
     <message>
         <source>Unable to open</source>
@@ -668,8 +668,8 @@ which may lead to problems with video calls.</source>
         <translation>Не удалось открыть временный файл</translation>
     </message>
     <message>
-        <source>qTox wasn&apos;t able to save the screenshot</source>
-        <translation>qTox не смог сохранить снимок экрана</translation>
+        <source>Messthon wasn&apos;t able to save the screenshot</source>
+        <translation>Messthon не смог сохранить снимок экрана</translation>
     </message>
     <message>
         <source>Call duration: </source>
@@ -1096,8 +1096,8 @@ so you can save the file on Windows.</source>
         <translation>Общие настройки</translation>
     </message>
     <message>
-        <source>The translation may not load until qTox restarts.</source>
-        <translation>Перевод не изменится до перезапуска qTox.</translation>
+        <source>The translation may not load until Messthon restarts.</source>
+        <translation>Перевод не изменится до перезапуска Messthon.</translation>
     </message>
     <message>
         <source>Show system tray icon</source>
@@ -1133,9 +1133,9 @@ so you can save the file on Windows.</source>
         <translation>Включить светлую иконку в трее.</translation>
     </message>
     <message>
-        <source>qTox will start minimized in tray.</source>
+        <source>Messthon will start minimized in tray.</source>
         <comment>toolTip for Start in tray setting</comment>
-        <translation>qTox будет запускаться свернутым в трей.</translation>
+        <translation>Messthon будет запускаться свернутым в трей.</translation>
     </message>
     <message>
         <source>Autostart</source>
@@ -1154,8 +1154,8 @@ so you can save the file on Windows.</source>
         <translation>Статус «Отошел» после (0 - выключено):</translation>
     </message>
     <message>
-        <source>Start qTox on operating system startup (current profile).</source>
-        <translation>Запускать qTox при загрузке операционной системы (текущий профиль).</translation>
+        <source>Start Messthon on operating system startup (current profile).</source>
+        <translation>Запускать Messthon при загрузке операционной системы (текущий профиль).</translation>
     </message>
     <message>
         <source>Autoaccept files</source>
@@ -1186,17 +1186,17 @@ so you can save the file on Windows.</source>
         <translation> МБ</translation>
     </message>
     <message>
-        <source>After pressing minimize (_) qTox will minimize to tray,
+        <source>After pressing minimize (_) Messthon will minimize to tray,
 instead of system taskbar.</source>
         <comment>toolTip for minimize to tray setting</comment>
-        <translation>После нажатия свернуть (_) qTox будет свёрнут в трей,
+        <translation>После нажатия свернуть (_) Messthon будет свёрнут в трей,
 вместо системной панели задач.</translation>
     </message>
     <message>
-        <source>After pressing close (X) qTox will close to tray,
+        <source>After pressing close (X) Messthon will close to tray,
 instead of closing entirely.</source>
         <comment>toolTip for close to tray setting</comment>
-        <translation>После нажатия закрыть (X) qTox свернётся в трей,
+        <translation>После нажатия закрыть (X) Messthon свернётся в трей,
 вместо того, чтобы закрыться совсем.</translation>
     </message>
     <message>
@@ -1542,8 +1542,8 @@ Share it with your friends to begin chatting.</source>
         <translation>Создать профиль</translation>
     </message>
     <message>
-        <source>If the profile does not have a password, qTox can skip the login screen</source>
-        <translation>Если профиль не защищен паролем, qTox может пропустить диалог выбора профиля</translation>
+        <source>If the profile does not have a password, Messthon can skip the login screen</source>
+        <translation>Если профиль не защищен паролем, Messthon может пропустить диалог выбора профиля</translation>
     </message>
     <message>
         <source>Load automatically</source>
@@ -1775,9 +1775,9 @@ Please make sure to enter the same password twice.</source>
         <translation>Исполняемый файл</translation>
     </message>
     <message>
-        <source>You have asked qTox to open an executable file. Executable files can potentially damage your computer. Are you sure want to open this file?</source>
+        <source>You have asked Messthon to open an executable file. Executable files can potentially damage your computer. Are you sure want to open this file?</source>
         <comment>popup text</comment>
-        <translation>Вы просите qTox открыть исполняемый файл. Исполняемые файлы могут нанести вред вашему компьютеру. Вы уверены, что хотите открыть этот файл?</translation>
+        <translation>Вы просите Messthon открыть исполняемый файл. Исполняемые файлы могут нанести вред вашему компьютеру. Вы уверены, что хотите открыть этот файл?</translation>
     </message>
 </context>
 <context>
@@ -1984,8 +1984,8 @@ Save format changes are possible, which may result in data loss.</source>
         <translation>Ошибка извлечения ключа из пароля, новый пароль на профиль не установлен.</translation>
     </message>
     <message>
-        <source>Toxing on qTox</source>
-        <translation>Общайтесь в qTox</translation>
+        <source>Messenger on Python</source>
+        <translation>Общайтесь в Messthon</translation>
     </message>
     <message>
         <source>Couldn&apos;t change database password, it may be corrupted or use the old password.</source>
@@ -2326,8 +2326,8 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <source>qTox couldn&apos;t open your chat logs, they will be disabled.</source>
-        <translation>qTox не может загрузить историю переписки, она будет отключена.</translation>
+        <source>Messthon couldn&apos;t open your chat logs, they will be disabled.</source>
+        <translation>Messthon не может загрузить историю переписки, она будет отключена.</translation>
     </message>
     <message>
         <source>Dark</source>
@@ -2512,8 +2512,8 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
         <translation>Не удалось загрузить историю чата</translation>
     </message>
     <message>
-        <source>Database version (%1) is newer than we currently support (%2). Please upgrade qTox.</source>
-        <translation>Версия базы данных (%1) новее, чем поддерживаемая нами в настоящее время (%2). Пожалуйста, обновите qTox.</translation>
+        <source>Database version (%1) is newer than we currently support (%2). Please upgrade Messthon.</source>
+        <translation>Версия базы данных (%1) новее, чем поддерживаемая нами в настоящее время (%2). Пожалуйста, обновите Messthon.</translation>
     </message>
 </context>
 <context>
@@ -2542,9 +2542,9 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
 <context>
     <name>ScreenshotGrabber</name>
     <message>
-        <source>Click and drag to select a region. Press %1 to hide/show qTox window, or %2 to cancel.</source>
+        <source>Click and drag to select a region. Press %1 to hide/show Messthon window, or %2 to cancel.</source>
         <comment>Help text shown when no region has been selected yet</comment>
-        <translation>Обведите область с зажатой левой клавишей. Нажмите %1, чтобы скрыть/показать окно qTox или %2 для отмены.</translation>
+        <translation>Обведите область с зажатой левой клавишей. Нажмите %1, чтобы скрыть/показать окно Messthon или %2 для отмены.</translation>
     </message>
     <message>
         <source>Space</source>
@@ -2557,9 +2557,9 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
         <translation>Escape</translation>
     </message>
     <message>
-        <source>Press %1 to send a screenshot of the selection, %2 to hide/show qTox window, or %3 to cancel.</source>
+        <source>Press %1 to send a screenshot of the selection, %2 to hide/show Messthon window, or %3 to cancel.</source>
         <comment>Help text shown when a region has been selected</comment>
-        <translation>Нажмите %1, чтобы отправить скриншот выбранной области, %2, чтобы скрыть/показать окно qTox, или клавишу %3 для отмены.</translation>
+        <translation>Нажмите %1, чтобы отправить скриншот выбранной области, %2, чтобы скрыть/показать окно Messthon, или клавишу %3 для отмены.</translation>
     </message>
     <message>
         <source>Enter</source>
@@ -2683,8 +2683,8 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
         <translation>Не удалось загрузить персональные настройки</translation>
     </message>
     <message>
-        <source>Unable to upgrade settings from version %1 to version %2. Cannot start qTox.</source>
-        <translation>Невозможно обновить настройки с версии %1 на версию %2. Запуск qTox невозможен.</translation>
+        <source>Unable to upgrade settings from version %1 to version %2. Cannot start Messthon.</source>
+        <translation>Невозможно обновить настройки с версии %1 на версию %2. Запуск Messthon невозможен.</translation>
     </message>
     <message>
         <source>Failed to load global settings</source>
@@ -2751,8 +2751,8 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
         <translation>Размер: </translation>
     </message>
     <message>
-        <source>New text styling preference may not load until qTox restarts.</source>
-        <translation>Для применения нового стиля текстовых сообщений может потребоваться перезагрузка qTox.</translation>
+        <source>New text styling preference may not load until Messthon restarts.</source>
+        <translation>Для применения нового стиля текстовых сообщений может потребоваться перезагрузка Messthon.</translation>
     </message>
     <message>
         <source>Text Style format:</source>
@@ -2779,9 +2779,9 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
         <translation>Новое сообщение</translation>
     </message>
     <message>
-        <source>Open qTox&apos;s window when you receive a new message and no window is open yet.</source>
+        <source>Open Messthon&apos;s window when you receive a new message and no window is open yet.</source>
         <comment>tooltip for Show window setting</comment>
-        <translation>Открывать окно qTox при получении нового сообщения, если оно еще не было открыто.</translation>
+        <translation>Открывать окно Messthon при получении нового сообщения, если оно еще не было открыто.</translation>
     </message>
     <message>
         <source>Open window</source>
@@ -2999,7 +2999,7 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
     </message>
     <message>
         <source>Show</source>
-        <comment>Tray action menu to show qTox window</comment>
+        <comment>Tray action menu to show Messthon window</comment>
         <translation>Отобразить</translation>
     </message>
     <message>
@@ -3032,9 +3032,9 @@ This ID includes the NoSpam code (in blue), and the checksum (in gray).</source>
         <translation>Toxcore не удалось запуститься, программа будет закрыта после того, как вы закроете это сообщение.</translation>
     </message>
     <message>
-        <source>Toxcore failed to start with your proxy settings. qTox cannot run; please modify your settings and restart.</source>
+        <source>Toxcore failed to start with your proxy settings. Messthon cannot run; please modify your settings and restart.</source>
         <comment>popup text</comment>
-        <translation>Toxcore не удалось запуститься с вашими настройками прокси. qTox не может запуститься; пожалуйста, исправьте ваши настройки и перезапустите программу.</translation>
+        <translation>Messthon основан на Toxcore. Ошибка: не удалось запуститься с вашими настройками прокси. Messthon не может запуститься; пожалуйста, исправьте ваши настройки и перезапустите программу.</translation>
     </message>
     <message>
         <source>Couldn&apos;t send friend request</source>

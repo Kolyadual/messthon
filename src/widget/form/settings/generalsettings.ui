@@ -61,7 +61,7 @@
             <item>
              <widget class="QLabel" name="transLabel">
               <property name="toolTip">
-               <string>The translation may not load until qTox restarts.</string>
+               <string>The translation may not load until Messthon restarts.</string>
               </property>
               <property name="text">
                <string>Language:</string>
@@ -77,7 +77,7 @@
                </sizepolicy>
               </property>
               <property name="toolTip">
-               <string>The translation may not load until qTox restarts.</string>
+               <string>The translation may not load until Messthon restarts.</string>
               </property>
              </widget>
             </item>
@@ -101,7 +101,7 @@
             <item>
              <widget class="QCheckBox" name="cbAutorun">
               <property name="toolTip">
-               <string>Start qTox on operating system startup (current profile).</string>
+               <string>Start Messthon on operating system startup (current profile).</string>
               </property>
               <property name="text">
                <string>Autostart</string>
@@ -172,7 +172,7 @@
                  </sizepolicy>
                 </property>
                 <property name="toolTip">
-                 <string comment="toolTip for Start in tray setting">qTox will start minimized in tray.</string>
+                 <string comment="toolTip for Start in tray setting">Messthon will start minimized in tray.</string>
                 </property>
                 <property name="text">
                  <string>Start in tray</string>
@@ -188,7 +188,7 @@
                  </sizepolicy>
                 </property>
                 <property name="toolTip">
-                 <string comment="toolTip for minimize to tray setting">After pressing minimize (_) qTox will minimize to tray,
+                 <string comment="toolTip for minimize to tray setting">After pressing minimize (_) Messthon will minimize to tray,
 instead of system taskbar.</string>
                 </property>
                 <property name="text">
@@ -205,7 +205,7 @@ instead of system taskbar.</string>
                  </sizepolicy>
                 </property>
                 <property name="toolTip">
-                 <string comment="toolTip for close to tray setting">After pressing close (X) qTox will close to tray,
+                 <string comment="toolTip for close to tray setting">After pressing close (X) Messthon will close to tray,
 instead of closing entirely.</string>
                 </property>
                 <property name="text">

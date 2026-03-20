@@ -1,32 +1,32 @@
 /*
-    Copyright © 2015-2019 by The qTox Project Contributors
-
-    This file is part of qTox, a Qt-based graphical interface for Tox.
-
-    qTox is libre software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    qTox is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with qTox.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ *   Copyright © 2015-2019 by The qTox Project Contributors
+ *
+ *   This file is part of qTox, a Qt-based graphical interface for Tox.
+ *
+ *   qTox is libre software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   qTox is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with qTox.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <QApplication>
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QScreen>
 extern "C" {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wold-style-cast"
-#include <libavdevice/avdevice.h>
-#include <libavformat/avformat.h>
-#pragma GCC diagnostic pop
+    #pragma GCC diagnostic push
+    #pragma GCC diagnostic ignored "-Wold-style-cast"
+    #include <libavdevice/avdevice.h>
+    #include <libavformat/avformat.h>
+    #pragma GCC diagnostic pop
 }
 #include "cameradevice.h"
 #include "src/persistence/settings.h"
@@ -72,17 +72,17 @@ using AvFindInputFormatRet = decltype(av_find_input_format(""));
  */
 
 namespace {
-AvFindInputFormatRet idesktopFormat{nullptr};
-AvFindInputFormatRet iformat{nullptr};
+    AvFindInputFormatRet idesktopFormat{nullptr};
+    AvFindInputFormatRet iformat{nullptr};
 } // namespace
 
 QHash<QString, CameraDevice*> CameraDevice::openDevices;
 QMutex CameraDevice::openDeviceLock, CameraDevice::iformatLock;
 
 CameraDevice::CameraDevice(const QString& devName_, AVFormatContext* context_)
-    : devName{devName_}
-    , context{context_}
-    , refcount{1}
+: devName{devName_}
+, context{context_}
+, refcount{1}
 {
 }
 
@@ -113,28 +113,28 @@ CameraDevice* CameraDevice::open(QString devName, AVDictionary** options)
         goto out;
     }
 
-// Fix avformat_find_stream_info hanging on garbage input
-#if defined FF_API_PROBESIZE_32 && FF_API_PROBESIZE_32
+    // Fix avformat_find_stream_info hanging on garbage input
+    #if defined FF_API_PROBESIZE_32 && FF_API_PROBESIZE_32
     aduration = fctx->max_analyze_duration2 = 0;
-#else
+    #else
     aduration = fctx->max_analyze_duration = 0;
-#endif
+    #endif
 
     if (avformat_find_stream_info(fctx, nullptr) < 0) {
         avformat_close_input(&fctx);
         goto out;
     }
 
-#if defined FF_API_PROBESIZE_32 && FF_API_PROBESIZE_32
+    #if defined FF_API_PROBESIZE_32 && FF_API_PROBESIZE_32
     fctx->max_analyze_duration2 = aduration;
-#else
+    #else
     fctx->max_analyze_duration = aduration;
-#endif
+    #endif
 
     dev = new CameraDevice{devName, fctx};
     openDevices[devName] = dev;
 
-out:
+    out:
     openDeviceLock.unlock();
     return dev;
 }
@@ -174,7 +174,7 @@ CameraDevice* CameraDevice::open(QString devName, VideoMode mode)
     AVDictionary* options = nullptr;
     if (!iformat)
         ;
-#if USING_V4L
+    #if USING_V4L
     else if (devName.startsWith("x11grab#")) {
         QSize screen;
         if (mode.width && mode.height) {
@@ -205,8 +205,8 @@ CameraDevice* CameraDevice::open(QString devName, VideoMode mode)
             av_dict_set(&options, "pixel_format", pixel_format, 0);
         }
     }
-#endif
-#ifdef Q_OS_WIN
+    #endif
+    #ifdef Q_OS_WIN
     else if (devName.startsWith("gdigrab#")) {
 
         const std::string offsetX = QString().setNum(mode.x).toStdString();
@@ -219,8 +219,8 @@ CameraDevice* CameraDevice::open(QString devName, VideoMode mode)
         av_dict_set(&options, "video_size", videoSize.c_str(), 0);
         av_dict_set(&options, "framerate", framerate.c_str(), 0);
     }
-#endif
-#ifdef Q_OS_OSX
+    #endif
+    #ifdef Q_OS_OSX
     else if (QString::fromUtf8(iformat->name) == QString("avfoundation")) {
         if (mode) {
             av_dict_set(&options, "video_size", videoSize.c_str(), 0);
@@ -231,7 +231,7 @@ CameraDevice* CameraDevice::open(QString devName, VideoMode mode)
             av_dict_set_int(&options, "capture_mouse_clicks", 1, 0);
         }
     }
-#endif
+    #endif
     else if (mode) {
         qWarning().nospace() << "No known options for " << iformat->name << ", using defaults.";
         std::ignore = mode;
@@ -279,61 +279,53 @@ bool CameraDevice::close()
  */
 QVector<QPair<QString, QString>> CameraDevice::getRawDeviceListGeneric()
 {
-    QVector<QPair<QString, QString>> devices;
-
-    if (!getDefaultInputFormat())
-        return devices;
-
-    // Alloc an input device context
-    AVFormatContext* s;
-    if (!(s = avformat_alloc_context()))
-        return devices;
-
-    if (!iformat->priv_class || !AV_IS_INPUT_DEVICE(iformat->priv_class->category)) {
-        avformat_free_context(s);
-        return devices;
+    if (!getDefaultInputFormat()) {
+        return {};
     }
+
+    QVector<QPair<QString, QString>> devices;
+    AVFormatContext* s = avformat_alloc_context();
+    if (!s) return {};
 
     s->iformat = iformat;
+
+    // Для старых версий выделяем память вручную, для новых (как у тебя)
+    // FFmpeg сделает это сам внутри av_opt_set_dict2 или avdevice_list_devices
+    #if LIBAVFORMAT_VERSION_INT < AV_VERSION_INT(59, 0, 0)
     if (s->iformat->priv_data_size > 0) {
         s->priv_data = av_mallocz(s->iformat->priv_data_size);
-        if (!s->priv_data) {
-            avformat_free_context(s);
-            return devices;
-        }
-        if (s->iformat->priv_class) {
-            *static_cast<const AVClass**>(s->priv_data) = s->iformat->priv_class;
-            av_opt_set_defaults(s->priv_data);
-        }
-    } else {
-        s->priv_data = nullptr;
     }
+    #endif
 
-    // List the devices for this context
     AVDeviceInfoList* devlist = nullptr;
     AVDictionary* tmp = nullptr;
-    av_dict_copy(&tmp, nullptr, 0);
+
+    // Инициализируем опции устройства (важно для V4L2)
     if (av_opt_set_dict2(s, &tmp, AV_OPT_SEARCH_CHILDREN) < 0) {
-        av_dict_free(&tmp);
         avformat_free_context(s);
-        return devices;
-    }
-    avdevice_list_devices(s, &devlist);
-    av_dict_free(&tmp);
-    avformat_free_context(s);
-    if (!devlist) {
-        qWarning() << "avdevice_list_devices failed";
-        return devices;
+        return {};
     }
 
-    // Convert the list to a QVector
-    devices.resize(devlist->nb_devices);
-    for (int i = 0; i < devlist->nb_devices; ++i) {
-        AVDeviceInfo* dev = devlist->devices[i];
-        devices[i].first = QString::fromUtf8(dev->device_name);
-        devices[i].second = QString::fromUtf8(dev->device_description);
+    // Получаем список реальных устройств через драйвер
+    if (avdevice_list_devices(s, &devlist) < 0) {
+        av_dict_free(&tmp);
+        avformat_free_context(s);
+        return {};
     }
+
+    av_dict_free(&tmp);
+    if (!devlist) {
+        avformat_free_context(s);
+        return {};
+    }
+
+    for (int i = 0; i < devlist->nb_devices; ++i) {
+        devices.append({QString::fromUtf8(devlist->devices[i]->device_description),
+            QString::fromUtf8(devlist->devices[i]->device_name)});
+    }
+
     avdevice_free_list_devices(&devlist);
+    avformat_free_context(s);
     return devices;
 }
 
@@ -353,18 +345,18 @@ QVector<QPair<QString, QString>> CameraDevice::getDeviceList()
 
     if (!iformat)
         ;
-#ifdef Q_OS_WIN
+    #ifdef Q_OS_WIN
     else if (QString::fromUtf8(iformat->name) == QString("dshow"))
         devices += DirectShow::getDeviceList();
-#endif
-#if USING_V4L
+    #endif
+    #if USING_V4L
     else if (QString::fromUtf8(iformat->name) == QString("video4linux2,v4l2"))
         devices += v4l2::getDeviceList();
-#endif
-#ifdef Q_OS_OSX
+    #endif
+    #ifdef Q_OS_OSX
     else if (QString::fromUtf8(iformat->name) == QString("avfoundation"))
         devices += avfoundation::getDeviceList();
-#endif
+    #endif
     else
         devices += getRawDeviceListGeneric();
 
@@ -458,18 +450,18 @@ QVector<VideoMode> CameraDevice::getVideoModes(QString devName)
         ;
     else if (isScreen(devName))
         return getScreenModes();
-#ifdef Q_OS_WIN
+    #ifdef Q_OS_WIN
     else if (QString::fromUtf8(iformat->name) == QString("dshow"))
         return DirectShow::getDeviceModes(devName);
-#endif
-#if USING_V4L
+    #endif
+    #if USING_V4L
     else if (QString::fromUtf8(iformat->name) == QString("video4linux2,v4l2"))
         return v4l2::getDeviceModes(devName);
-#endif
-#ifdef Q_OS_OSX
+    #endif
+    #ifdef Q_OS_OSX
     else if (QString::fromUtf8(iformat->name) == QString("avfoundation"))
         return avfoundation::getDeviceModes(devName);
-#endif
+    #endif
     else
         qWarning() << "Video mode listing not implemented for input " << iformat->name;
 
@@ -483,12 +475,12 @@ QVector<VideoMode> CameraDevice::getVideoModes(QString devName)
  */
 QString CameraDevice::getPixelFormatString(uint32_t pixel_format)
 {
-#if USING_V4L
+    #if USING_V4L
     return v4l2::getPixelFormatString(pixel_format);
-#else
+    #else
     std::ignore = pixel_format;
     return QString("unknown");
-#endif
+    #endif
 }
 
 /**
@@ -500,13 +492,13 @@ QString CameraDevice::getPixelFormatString(uint32_t pixel_format)
  */
 bool CameraDevice::betterPixelFormat(uint32_t a, uint32_t b)
 {
-#if USING_V4L
+    #if USING_V4L
     return v4l2::betterPixelFormat(a, b);
-#else
+    #else
     std::ignore = a;
     std::ignore = b;
     return false;
-#endif
+    #endif
 }
 
 /**
@@ -521,33 +513,33 @@ bool CameraDevice::getDefaultInputFormat()
 
     avdevice_register_all();
 
-// Desktop capture input formats
-#if USING_V4L
+    // Desktop capture input formats
+    #if USING_V4L
     idesktopFormat = av_find_input_format("x11grab");
-#endif
-#ifdef Q_OS_WIN
+    #endif
+    #ifdef Q_OS_WIN
     idesktopFormat = av_find_input_format("gdigrab");
-#endif
+    #endif
 
-// Webcam input formats
-#if USING_V4L
+    // Webcam input formats
+    #if USING_V4L
     if ((iformat = av_find_input_format("v4l2")))
         return true;
-#endif
+    #endif
 
-#ifdef Q_OS_WIN
+    #ifdef Q_OS_WIN
     if ((iformat = av_find_input_format("dshow")))
         return true;
     if ((iformat = av_find_input_format("vfwcap")))
         return true;
-#endif
+    #endif
 
-#ifdef Q_OS_OSX
+    #ifdef Q_OS_OSX
     if ((iformat = av_find_input_format("avfoundation")))
         return true;
     if ((iformat = av_find_input_format("qtkit")))
         return true;
-#endif
+    #endif
 
     qWarning() << "No valid input format found";
     return false;

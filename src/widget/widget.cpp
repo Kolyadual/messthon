@@ -1,22 +1,3 @@
-/*
-    Copyright © 2014-2022 by The qTox Project Contributors
-
-    This file is part of qTox, a Qt-based graphical interface for Tox.
-
-    qTox is libre software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    qTox is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with qTox.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
 #include "widget.h"
 
 #include <cassert>
@@ -561,24 +542,11 @@ void Widget::updateIcons()
                                     ui->statusButton->property("status").toInt()))
                                 + (eventIcon ? QStringLiteral("_event") : QString());
 
-    // Some builds of Qt appear to have a bug in icon loading:
-    // QIcon::hasThemeIcon is sometimes unaware that the icon returned
-    // from QIcon::fromTheme was a fallback icon, causing hasThemeIcon to
-    // incorrectly return true.
-    //
-    // In qTox this leads to the tray and window icons using the static qTox logo
-    // icon instead of an icon based on the current presence status.
-    //
-    // This workaround checks for an icon that definitely does not exist to
-    // determine if hasThemeIcon can be trusted.
-    //
-    // On systems with the Qt bug, this workaround will always use our included
-    // icons but user themes will be unable to override them.
     static bool checkedHasThemeIcon = false;
     static bool hasThemeIconBug = false;
 
     if (!checkedHasThemeIcon) {
-        hasThemeIconBug = QIcon::hasThemeIcon("qtox-asjkdfhawjkeghdfjgh");
+        hasThemeIconBug = QIcon::hasThemeIcon("messthon-asjkdfhawjkeghdfjgh");
         checkedHasThemeIcon = true;
 
         if (hasThemeIconBug) {
@@ -588,8 +556,8 @@ void Widget::updateIcons()
     }
 
     QIcon ico;
-    if (!hasThemeIconBug && QIcon::hasThemeIcon("qtox-" + assetSuffix)) {
-        ico = QIcon::fromTheme("qtox-" + assetSuffix);
+    if (!hasThemeIconBug && QIcon::hasThemeIcon("messthon-" + assetSuffix)) {
+        ico = QIcon::fromTheme("messthon-" + assetSuffix);
     } else {
         QString color = settings.getLightTrayIcon() ? QStringLiteral("light") : QStringLiteral("dark");
         QString path = ":/img/taskbar/" + color + "/taskbar_" + assetSuffix + ".svg";
@@ -783,7 +751,7 @@ void Widget::onBadProxyCore()
     settings.setProxyType(Settings::ProxyType::ptNone);
     QMessageBox critical(this);
     critical.setText(tr("Toxcore failed to start with your proxy settings. "
-                        "qTox cannot run; please modify your "
+                        "Messthon cannot run; please modify your "
                         "settings and restart.",
                         "popup text"));
     critical.setIcon(QMessageBox::Critical);
@@ -2691,7 +2659,7 @@ void Widget::retranslateUi()
     statusBusy->setText(tr("Busy", "Button to set your status to 'Busy'"));
     actionLogout->setText(tr("Logout", "Tray action menu to logout user"));
     actionQuit->setText(tr("Exit", "Tray action menu to exit Tox"));
-    actionShow->setText(tr("Show", "Tray action menu to show qTox window"));
+    actionShow->setText(tr("Show", "Tray action menu to show Messthon window"));
 
     if (!settings.getSeparateWindow() && (settingsWidget && settingsWidget->isShown())) {
         setWindowTitle(fromDialogType(DialogType::SettingDialog));
@@ -2755,9 +2723,9 @@ void Widget::connectFriendWidget(FriendWidget& friendWidget)
 void Widget::formatWindowTitle(const QString& content)
 {
     if (content.isEmpty()) {
-        setWindowTitle("qTox");
+        setWindowTitle("Messthon");
     } else {
-        setWindowTitle(content + " - qTox");
+        setWindowTitle(content + " - Messthon");
     }
 }
 

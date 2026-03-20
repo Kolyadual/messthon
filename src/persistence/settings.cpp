@@ -1,22 +1,3 @@
-/*
-    Copyright © 2013 by Maxim Biro <nurupo.contributions@gmail.com>
-    Copyright © 2014-2019 by The qTox Project Contributors
-
-    This file is part of qTox, a Qt-based graphical interface for Tox.
-
-    qTox is libre software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    qTox is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with qTox.  If not, see <http://www.gnu.org/licenses/>.
-*/
 
 #include "settings.h"
 #include "src/core/core.h"
@@ -60,7 +41,7 @@
  * which have widget->saveX() and widget->loadX() methods.
  */
 
-const QString Settings::globalSettingsFile = "qtox.ini";
+const QString Settings::globalSettingsFile = "mst.ini";
 CompatibleRecursiveMutex Settings::bigLock;
 QThread* Settings::settingsThread{nullptr};
 static constexpr int GLOBAL_SETTINGS_VERSION = 1;
@@ -73,7 +54,7 @@ Settings::Settings(IMessageBoxManager& messageBoxManager_)
     , messageBoxManager{messageBoxManager_}
 {
     settingsThread = new QThread();
-    settingsThread->setObjectName("qTox Settings");
+    settingsThread->setObjectName("Messthon Settings");
     settingsThread->start(QThread::LowPriority);
     qRegisterMetaType<const ToxEncrypt*>("const ToxEncrypt*");
     moveToThread(settingsThread);
@@ -123,7 +104,7 @@ void Settings::loadGlobal()
     auto upgradeSuccess = GlobalSettingsUpgrader::doUpgrade(*this, globalSettingsVersion, GLOBAL_SETTINGS_VERSION);
     if (!upgradeSuccess) {
         messageBoxManager.showError(tr("Failed to load global settings"),
-            tr("Unable to upgrade settings from version %1 to version %2. Cannot start qTox.")
+            tr("Unable to upgrade settings from version %1 to version %2. Cannot start Messthon.")
             .arg(globalSettingsVersion)
             .arg(GLOBAL_SETTINGS_VERSION));
         std::terminate();
@@ -497,7 +478,7 @@ void Settings::loadPersonal(const Profile& profile, bool newProfile)
     auto upgradeSuccess = PersonalSettingsUpgrader::doUpgrade(ps, personalSettingsVersion, PERSONAL_SETTINGS_VERSION);
     if (!upgradeSuccess) {
         messageBoxManager.showError(tr("Failed to load personal settings"),
-            tr("Unable to upgrade settings from version %1 to version %2. Cannot start qTox.")
+            tr("Unable to upgrade settings from version %1 to version %2. Cannot start Messthon.")
             .arg(personalSettingsVersion)
             .arg(PERSONAL_SETTINGS_VERSION));
         std::terminate();
@@ -2259,7 +2240,6 @@ Settings::friendProp& Settings::getOrInsertFriendPropRef(const ToxPk& id)
 
 ICoreSettings::ProxyType Settings::fixInvalidProxyType(ICoreSettings::ProxyType proxyType)
 {
-    // Repair uninitialized enum that was saved to settings due to bug (https://github.com/qTox/qTox/issues/5311)
     switch (proxyType) {
     case ICoreSettings::ProxyType::ptNone:
     case ICoreSettings::ProxyType::ptSOCKS5:

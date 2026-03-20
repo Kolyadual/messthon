@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+websockets
+sqlalchemy
+passlib[bcrypt]
+websocket-client
+requests
+tk
+tkinter
