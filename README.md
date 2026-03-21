@@ -1,5 +1,7 @@
 # Messthon
 
+Privacy is not a feature, it's a right!
+
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub release](https://img.shields.io/github/v/release/Kolyadual/messthon)](https://github.com/Kolyadual/messthon/releases)
 [![GitHub issues](https://img.shields.io/github/issues/Kolyadual/messthon)](https://github.com/Kolyadual/messthon/issues)
@@ -22,7 +24,8 @@ Built on the proven Tox protocol, Messthon encrypts everything automatically. Th
 - **Compatible** — You can chat with friends using any other Tox client (qTox, µTox, etc.), ensuring you are never locked into a single app.
 - **No Tracking** — No analytics, no telemetry. Your privacy is non-negotiable.
 - **Completely Free** — No ads, no subscriptions, no "freemium" features. Just free software.
-
+- **No hacking** — Messthon uses .mst profile files instead of .tox, making the messenger virtually impervious to data theft by malware. It also uses the mst.ini settings file instead of qtox.ini.
+- **Viability** — The messenger is evolving and is a "reincarnation" of abandoned projects such as qTox, Venom, Ricin, Toxygen, uTox, etc. You can also contribute to the project's development by contributing/finding bugs.
 ---
 
 ## Screenshots
@@ -83,6 +86,13 @@ I believe in the power of community. Whether you're a developer, a designer, or 
 - **Discuss Ideas:** Start a discussion in the <a href="https://github.com/Kolyadual/messthon/discussions">Discussions tab</a>
 - **Code:** We welcome pull requests! Please read our <a href="https://contributing.md/">Contributing Guidelines</a> first
 
+# Changes
+
+## Changes introduced in Messthon 1.0 and what was fixed in the qTox source code, on which the Messthon messenger is based:
+
+- **Camera bug fix**. Fixed code errors related to the use of a video camera in conferences. [FILE: src/video/cameradevice.cpp]
+- **Translation bug fix**. Fixed code errors related to translate from English to Russian. [FILE: translations/ru.ts]
+
 # License
 
 Messthon is free software, licensed under the GNU General Public License v3.0. This means you are free to use, study, share, and improve the software.
@@ -98,4 +108,4 @@ If you like Messthon, please give it a star on GitHub! It helps others discover 
 
 https://api.star-history.com/svg?repos=Kolyadual/messthon&type=Date
 
-## Messthon – Privacy is not a feature, it's a right.
+# Messthon – Privacy is not a feature, it's a right.
